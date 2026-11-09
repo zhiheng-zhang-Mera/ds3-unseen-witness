@@ -1,8 +1,5 @@
 name: ds3-unseen-psf-requests
 'on':
-  push:
-    branches:
-    - main
   workflow_dispatch: {}
 permissions:
   contents: read
@@ -64,8 +61,8 @@ jobs:
         SOURCE_COMMIT: 3c7baaa05ab4aa49cc819ce3a819d260de19c157
         SOURCE_WORKFLOW_PATH: .github/workflows/run-tests.yml
         SOURCE_WORKFLOW_SHA256: 881865cff186f47787598b2a3d7e6e7eb4d56a3fe4c015414c3cd4d90d9cbb90
-      run: "\nimport base64, hashlib, json, os, urllib.request\nfrom datetime import datetime, timezone\n\npath = os.environ[\"WITNESS_WORKFLOW_PATH\"]\nblob = open(path, \"rb\").read()\nsha = hashlib.sha256(blob).hexdigest()\nurl = os.environ[\"ACTIONS_ID_TOKEN_REQUEST_URL\"]\nreq = urllib.request.Request(url + \"&audience=ds-hns-identity\",\n                             headers={\"Authorization\": \"bearer \" + os.environ[\"ACTIONS_ID_TOKEN_REQUEST_TOKEN\"]})\nwith urllib.request.urlopen(req) as response:\n    token = json.loads(response.read().decode())[\"value\"]\natt = {\n    \"schema\": \"ds-hns-identity-attestation/1\",\n    \"repository\": os.environ[\"GITHUB_REPOSITORY\"],\n    \"run_id\": int(os.environ[\"GITHUB_RUN_ID\"]),\n    \"run_attempt\": int(os.environ[\"GITHUB_RUN_ATTEMPT\"]),\n    \"head_sha\": os.environ[\"GITHUB_SHA\"],\n    \"ref\": os.environ[\"GITHUB_REF\"],\n    \"workflow_ref\": os.environ[\"GITHUB_WORKFLOW_REF\"],\n    \"workflow_path\": path,\n    \"workflow_sha256\"\
-        : sha,\n    \"source_repository\": os.environ[\"SOURCE_REPOSITORY\"],\n    \"source_commit\": os.environ[\"SOURCE_COMMIT\"],\n    \"source_workflow_path\": os.environ[\"SOURCE_WORKFLOW_PATH\"],\n    \"source_workflow_sha256\": os.environ[\"SOURCE_WORKFLOW_SHA256\"],\n    \"family\": os.environ[\"WITNESS_FAMILY\"],\n    \"job\": os.environ[\"GITHUB_JOB\"],\n    \"event_name\": os.environ[\"GITHUB_EVENT_NAME\"],\n    \"oidc_token\": token,\n    \"captured_at_utc\": datetime.now(timezone.utc).strftime(\"%Y-%m-%dT%H:%M:%SZ\"),\n}\nopen(\"attestation.json\", \"w\", encoding=\"utf-8\").write(json.dumps(att, indent=2, sort_keys=True) + \"\\n\")\n"
+      run: "\npython3 - <<'PY'\nimport base64, hashlib, json, os, urllib.request\nfrom datetime import datetime, timezone\n\npath = os.environ[\"WITNESS_WORKFLOW_PATH\"]\nblob = open(path, \"rb\").read()\nsha = hashlib.sha256(blob).hexdigest()\nurl = os.environ[\"ACTIONS_ID_TOKEN_REQUEST_URL\"]\nreq = urllib.request.Request(url + \"&audience=ds-hns-identity\",\n                             headers={\"Authorization\": \"bearer \" + os.environ[\"ACTIONS_ID_TOKEN_REQUEST_TOKEN\"]})\nwith urllib.request.urlopen(req) as response:\n    token = json.loads(response.read().decode())[\"value\"]\natt = {\n    \"schema\": \"ds-hns-identity-attestation/1\",\n    \"repository\": os.environ[\"GITHUB_REPOSITORY\"],\n    \"run_id\": int(os.environ[\"GITHUB_RUN_ID\"]),\n    \"run_attempt\": int(os.environ[\"GITHUB_RUN_ATTEMPT\"]),\n    \"head_sha\": os.environ[\"GITHUB_SHA\"],\n    \"ref\": os.environ[\"GITHUB_REF\"],\n    \"workflow_ref\": os.environ[\"GITHUB_WORKFLOW_REF\"],\n    \"workflow_path\": path,\n\
+        \    \"workflow_sha256\": sha,\n    \"source_repository\": os.environ[\"SOURCE_REPOSITORY\"],\n    \"source_commit\": os.environ[\"SOURCE_COMMIT\"],\n    \"source_workflow_path\": os.environ[\"SOURCE_WORKFLOW_PATH\"],\n    \"source_workflow_sha256\": os.environ[\"SOURCE_WORKFLOW_SHA256\"],\n    \"family\": os.environ[\"WITNESS_FAMILY\"],\n    \"job\": os.environ[\"GITHUB_JOB\"],\n    \"event_name\": os.environ[\"GITHUB_EVENT_NAME\"],\n    \"oidc_token\": token,\n    \"captured_at_utc\": datetime.now(timezone.utc).strftime(\"%Y-%m-%dT%H:%M:%SZ\"),\n}\nopen(\"attestation.json\", \"w\", encoding=\"utf-8\").write(json.dumps(att, indent=2, sort_keys=True) + \"\\n\")\nPY\n"
     - uses: actions/upload-artifact@v4
       with:
         name: identity-attestation

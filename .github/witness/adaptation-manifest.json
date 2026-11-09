@@ -1,5 +1,5 @@
 {
-  "created_at": "2026-11-09T10:19:03Z",
+  "created_at": "2026-11-09T10:21:48Z",
   "rule": "Original jobs/needs/matrix/uses preserved; original run steps replaced by one no-op step; job-level reusable uses replaced by a local stub with matching inputs; a separate identity-witness job requests the OIDC token. Every change is listed.",
   "schema": "ds3-unseen-witness-adaptation/1",
   "selection": {
@@ -20,7 +20,7 @@
           "original": "Tests"
         },
         {
-          "kind": "triggers replaced by push-main + workflow_dispatch",
+          "kind": "triggers replaced by workflow_dispatch only (manual dispatch per revision branch)",
           "original_triggers": {
             "pull_request": {
               "paths-ignore": [
@@ -60,7 +60,7 @@
         }
       ],
       "copied_workflow_path": ".github/workflows/pallets-flask.yml",
-      "copied_workflow_sha256": "a04c89c51d0082f92c969da25a8a5efd290aa5e7eb385a8db3f5009ab5334e2d",
+      "copied_workflow_sha256": "a19a1d23e54067079c9ab4354ee0d62fe792baf299045af1083d8fa2285f6e18",
       "original_job_count": 2,
       "original_jobs": [
         "tests",
@@ -120,7 +120,7 @@
           "original": "Test"
         },
         {
-          "kind": "triggers replaced by push-main + workflow_dispatch",
+          "kind": "triggers replaced by workflow_dispatch only (manual dispatch per revision branch)",
           "original_triggers": {
             "pull_request": "",
             "push": {
@@ -175,7 +175,7 @@
         }
       ],
       "copied_workflow_path": ".github/workflows/tiangolo-fastapi.yml",
-      "copied_workflow_sha256": "7c415189487b0011d3ddb4eecfdffdc3b0f395354677f4c217d9645a1bddbb5d",
+      "copied_workflow_sha256": "64b6aef0b8f9de91539e5bb995b0474dc648379e51d075d026b143dc2cb940ae",
       "original_job_count": 6,
       "original_jobs": [
         "changes",
@@ -235,7 +235,7 @@
           "original": "Tests"
         },
         {
-          "kind": "triggers replaced by push-main + workflow_dispatch",
+          "kind": "triggers replaced by workflow_dispatch only (manual dispatch per revision branch)",
           "original_triggers": [
             "push",
             "pull_request"
@@ -266,7 +266,7 @@
         }
       ],
       "copied_workflow_path": ".github/workflows/psf-requests.yml",
-      "copied_workflow_sha256": "0a02b3ecb0c3e3bdd664988bc91a7f6bcae2944922c86eb065014717caa68c12",
+      "copied_workflow_sha256": "97e6e8f9a61d2b24203ca7e4f325d95f7032127b0ee7b85c9c4bf56a1f9ef202",
       "original_job_count": 3,
       "original_jobs": [
         "build",
@@ -309,7 +309,7 @@
           "original": "Test Suite"
         },
         {
-          "kind": "triggers replaced by push-main + workflow_dispatch",
+          "kind": "triggers replaced by workflow_dispatch only (manual dispatch per revision branch)",
           "original_triggers": {
             "pull_request": {
               "branches": [
@@ -339,7 +339,7 @@
         }
       ],
       "copied_workflow_path": ".github/workflows/encode-httpx.yml",
-      "copied_workflow_sha256": "cc77e8fb88a1e589f4d63a7fbb9b0ef413c12eb2f117dcd68c9657da0a9726f1",
+      "copied_workflow_sha256": "b049545dbd12dc2d011b24c3b019c753bb2c6cb755756b2cb63c0aa6c80fbc71",
       "original_job_count": 1,
       "original_jobs": [
         "tests"
@@ -392,7 +392,7 @@
           "original": "Tests"
         },
         {
-          "kind": "triggers replaced by push-main + workflow_dispatch",
+          "kind": "triggers replaced by workflow_dispatch only (manual dispatch per revision branch)",
           "original_triggers": {
             "merge_group": "",
             "pull_request": "",
@@ -440,7 +440,7 @@
         }
       ],
       "copied_workflow_path": ".github/workflows/python-poetry-poetry.yml",
-      "copied_workflow_sha256": "533b198b88723c5b13fa23d8b2276544ba067f1037763d6e1a0ae4d2f4a19e87",
+      "copied_workflow_sha256": "5b6f5cd3da3fe0c69ca42c758464dc96daa34bec437e2a4e015d22288b5387f3",
       "original_job_count": 6,
       "original_jobs": [
         "changes",
@@ -502,7 +502,7 @@
           "original": "CI"
         },
         {
-          "kind": "triggers replaced by push-main + workflow_dispatch",
+          "kind": "triggers replaced by workflow_dispatch only (manual dispatch per revision branch)",
           "original_triggers": {
             "pull_request": "",
             "push": {
@@ -572,7 +572,7 @@
         }
       ],
       "copied_workflow_path": ".github/workflows/pypa-pip.yml",
-      "copied_workflow_sha256": "e5364229d3a097880e0459d68974b2d0125465a680dcf0ebbdb0f2f4cebb5a1a",
+      "copied_workflow_sha256": "3a76cba4bcbb31de4ada56f1a9225e5119d072f7b1257a8dcfbfdf6ef0ccab39",
       "original_job_count": 8,
       "original_jobs": [
         "docs",
@@ -642,7 +642,7 @@
           "original": "Tests"
         },
         {
-          "kind": "triggers replaced by push-main + workflow_dispatch",
+          "kind": "triggers replaced by workflow_dispatch only (manual dispatch per revision branch)",
           "original_triggers": {
             "pull_request": {
               "paths-ignore": [
@@ -689,7 +689,7 @@
         }
       ],
       "copied_workflow_path": ".github/workflows/django-django.yml",
-      "copied_workflow_sha256": "fad3b46460c19d570585204b05caa03fa87e76c7cd8287e7985211a8203442c1",
+      "copied_workflow_sha256": "bb6a7d2c418153f5cbc05643157f0bf5881de541aef221e6f1d05ecd8010f29e",
       "original_job_count": 4,
       "original_jobs": [
         "windows",
@@ -747,7 +747,7 @@
           "original": "test"
         },
         {
-          "kind": "triggers replaced by push-main + workflow_dispatch",
+          "kind": "triggers replaced by workflow_dispatch only (manual dispatch per revision branch)",
           "original_triggers": {
             "pull_request": {
               "paths": [
@@ -795,7 +795,7 @@
         }
       ],
       "copied_workflow_path": ".github/workflows/psf-black.yml",
-      "copied_workflow_sha256": "b969781b1c90139055086f1b8bdc539ea52236328af4037ca5695c8a24c15373",
+      "copied_workflow_sha256": "ea079ea9f6bb8d647bb6ce0fe8ab87706be5cd540cb1b710f1f3081f790ff124",
       "original_job_count": 3,
       "original_jobs": [
         "test",
