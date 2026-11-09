@@ -1,0 +1,109 @@
+name: ds3-unseen-python-poetry-poetry
+'on':
+  push:
+    branches:
+    - main
+  workflow_dispatch: {}
+permissions:
+  contents: read
+  id-token: write
+jobs:
+  changes:
+    name: Detect changed files
+    runs-on: ubuntu-latest
+    outputs:
+      project: ${{ steps.changes.outputs.project }}
+      fixtures-pypi: ${{ steps.changes.outputs.fixtures-pypi }}
+      src: ${{ steps.changes.outputs.src }}
+      tests: ${{ steps.changes.outputs.tests }}
+    steps:
+    - name: adapted no-op (original steps not executed in witness copy)
+      run: 'echo ''adapted original job: no project commands executed'''
+  lockfile:
+    name: Check poetry.lock
+    runs-on: ubuntu-latest
+    if: needs.changes.outputs.project == 'true'
+    needs: changes
+    steps:
+    - name: adapted no-op (original steps not executed in witness copy)
+      run: 'echo ''adapted original job: no project commands executed'''
+  smoke:
+    name: Smoke-test build and install
+    runs-on: ubuntu-latest
+    if: needs.changes.outputs.project == 'true'
+    needs: lockfile
+    steps:
+    - name: adapted no-op (original steps not executed in witness copy)
+      run: 'echo ''adapted original job: no project commands executed'''
+  fixtures-pypi:
+    name: Check fixtures (PyPI)
+    runs-on: ubuntu-latest
+    if: needs.changes.outputs.fixtures-pypi == 'true'
+    needs: changes
+    steps:
+    - name: adapted no-op (original steps not executed in witness copy)
+      run: 'echo ''adapted original job: no project commands executed'''
+  tests-matrix:
+    uses: ./.github/workflows/_reusable-python-poetry-poetry.yml
+    name: ${{ matrix.os.name }} (Python ${{ matrix.python-version }})
+    if: '!failure()'
+    needs:
+    - lockfile
+    - changes
+    with:
+      runner: ${{ matrix.os.image }}
+      python-version: ${{ matrix.python-version }}
+      run-mypy: ${{ needs.changes.outputs.tests == 'true' }}
+      run-pytest: ${{ needs.changes.outputs.tests == 'true' }}
+      run-pytest-export: ${{ needs.changes.outputs.src == 'true' }}
+    secrets: inherit
+    strategy:
+      matrix:
+        os:
+        - name: Ubuntu
+          image: ubuntu-24.04
+        - name: Windows
+          image: windows-2025
+        - name: macOS aarch64
+          image: macos-15
+        python-version:
+        - '3.11'
+        - '3.12'
+        - '3.13'
+        - '3.14'
+        - '3.15'
+      fail-fast: false
+  status:
+    name: Status
+    runs-on: ubuntu-latest
+    if: always()
+    needs:
+    - lockfile
+    - smoke
+    - fixtures-pypi
+    - tests-matrix
+    steps:
+    - name: adapted no-op (original steps not executed in witness copy)
+      run: 'echo ''adapted original job: no project commands executed'''
+  identity-witness:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+    - uses: actions/checkout@v4
+    - name: OIDC identity attestation
+      env:
+        WITNESS_WORKFLOW_PATH: .github/workflows/python-poetry-poetry.yml
+        WITNESS_FAMILY: python-poetry-poetry
+        SOURCE_REPOSITORY: python-poetry/poetry
+        SOURCE_COMMIT: fc845fbacf502eda5504efad5bbec6915c1a9f00
+        SOURCE_WORKFLOW_PATH: .github/workflows/tests.yaml
+        SOURCE_WORKFLOW_SHA256: 7ad7f4fbfde58f9a0979a3cbc2eab9f7524219ace8ece10bfd1522852d627802
+      run: "\nimport base64, hashlib, json, os, urllib.request\nfrom datetime import datetime, timezone\n\npath = os.environ[\"WITNESS_WORKFLOW_PATH\"]\nblob = open(path, \"rb\").read()\nsha = hashlib.sha256(blob).hexdigest()\nurl = os.environ[\"ACTIONS_ID_TOKEN_REQUEST_URL\"]\nreq = urllib.request.Request(url + \"&audience=ds-hns-identity\",\n                             headers={\"Authorization\": \"bearer \" + os.environ[\"ACTIONS_ID_TOKEN_REQUEST_TOKEN\"]})\nwith urllib.request.urlopen(req) as response:\n    token = json.loads(response.read().decode())[\"value\"]\natt = {\n    \"schema\": \"ds-hns-identity-attestation/1\",\n    \"repository\": os.environ[\"GITHUB_REPOSITORY\"],\n    \"run_id\": int(os.environ[\"GITHUB_RUN_ID\"]),\n    \"run_attempt\": int(os.environ[\"GITHUB_RUN_ATTEMPT\"]),\n    \"head_sha\": os.environ[\"GITHUB_SHA\"],\n    \"ref\": os.environ[\"GITHUB_REF\"],\n    \"workflow_ref\": os.environ[\"GITHUB_WORKFLOW_REF\"],\n    \"workflow_path\": path,\n    \"workflow_sha256\"\
+        : sha,\n    \"source_repository\": os.environ[\"SOURCE_REPOSITORY\"],\n    \"source_commit\": os.environ[\"SOURCE_COMMIT\"],\n    \"source_workflow_path\": os.environ[\"SOURCE_WORKFLOW_PATH\"],\n    \"source_workflow_sha256\": os.environ[\"SOURCE_WORKFLOW_SHA256\"],\n    \"family\": os.environ[\"WITNESS_FAMILY\"],\n    \"job\": os.environ[\"GITHUB_JOB\"],\n    \"event_name\": os.environ[\"GITHUB_EVENT_NAME\"],\n    \"oidc_token\": token,\n    \"captured_at_utc\": datetime.now(timezone.utc).strftime(\"%Y-%m-%dT%H:%M:%SZ\"),\n}\nopen(\"attestation.json\", \"w\", encoding=\"utf-8\").write(json.dumps(att, indent=2, sort_keys=True) + \"\\n\")\n"
+    - uses: actions/upload-artifact@v4
+      with:
+        name: identity-attestation
+        path: attestation.json
+        if-no-files-found: error

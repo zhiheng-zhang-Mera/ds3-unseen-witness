@@ -1,0 +1,36 @@
+name: reusable-python-poetry-poetry
+'on':
+  workflow_call:
+    inputs:
+      runner:
+        description: adapted input
+        type: string
+        required: false
+        default: ''
+      python-version:
+        description: adapted input
+        type: string
+        required: false
+        default: ''
+      run-mypy:
+        description: adapted input
+        type: string
+        required: false
+        default: ''
+      run-pytest:
+        description: adapted input
+        type: string
+        required: false
+        default: ''
+      run-pytest-export:
+        description: adapted input
+        type: string
+        required: false
+        default: ''
+    secrets: {}
+jobs:
+  reusable-noop:
+    runs-on: ubuntu-latest
+    steps:
+    - name: adapted reusable no-op
+      run: 'echo ''adapted reusable workflow: original steps not executed'''

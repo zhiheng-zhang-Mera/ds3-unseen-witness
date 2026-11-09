@@ -1,0 +1,853 @@
+{
+  "created_at": "2026-11-09T10:19:03Z",
+  "rule": "Original jobs/needs/matrix/uses preserved; original run steps replaced by one no-op step; job-level reusable uses replaced by a local stub with matching inputs; a separate identity-witness job requests the OIDC token. Every change is listed.",
+  "schema": "ds3-unseen-witness-adaptation/1",
+  "selection": {
+    "body_sha256": "04cfbaa24e9c2cf9945d323d86bad9119bc9d687b64144a4597f0e36d7221d74",
+    "file_sha256": "0b7b4d5d620f5165265147f30ad69736df699a20ff194b65b60ea9da5b34c0ba",
+    "path": "C:\\Users\\15601\\.dsh-qqbot\\workspace\\Essay-Book\\Journal-Publication\\DS-Hns\\protocol\\ds3-unseen-witness-selection.json"
+  },
+  "workflows": [
+    {
+      "adapted_jobs": [
+        "tests",
+        "typing",
+        "identity-witness"
+      ],
+      "changes": [
+        {
+          "kind": "workflow name prefixed",
+          "original": "Tests"
+        },
+        {
+          "kind": "triggers replaced by push-main + workflow_dispatch",
+          "original_triggers": {
+            "pull_request": {
+              "paths-ignore": [
+                "docs/**",
+                "README.md"
+              ]
+            },
+            "push": {
+              "branches": [
+                "main",
+                "stable"
+              ],
+              "paths-ignore": [
+                "docs/**",
+                "README.md"
+              ]
+            }
+          }
+        },
+        {
+          "kind": "top-level permissions added",
+          "permissions": "contents:read,id-token:write"
+        },
+        {
+          "job": "identity-witness",
+          "kind": "identity-witness job added"
+        },
+        {
+          "job": "tests",
+          "kind": "original steps replaced by one no-op step",
+          "original_step_count": 4
+        },
+        {
+          "job": "typing",
+          "kind": "original steps replaced by one no-op step",
+          "original_step_count": 5
+        }
+      ],
+      "copied_workflow_path": ".github/workflows/pallets-flask.yml",
+      "copied_workflow_sha256": "a04c89c51d0082f92c969da25a8a5efd290aa5e7eb385a8db3f5009ab5334e2d",
+      "original_job_count": 2,
+      "original_jobs": [
+        "tests",
+        "typing"
+      ],
+      "original_reusable_uses": [],
+      "original_step_count": 9,
+      "repository": "pallets/flask",
+      "source_commit": "49943b5a94413a530761350f04e896f76e8d620e",
+      "source_features": {
+        "dynamic_expression_count": 7,
+        "job_count": 2,
+        "jobs": [
+          "tests",
+          "typing"
+        ],
+        "matrix": true,
+        "needs": false,
+        "reusable_uses": false,
+        "triggers": {
+          "pull_request": {
+            "paths-ignore": [
+              "docs/**",
+              "README.md"
+            ]
+          },
+          "push": {
+            "branches": [
+              "main",
+              "stable"
+            ],
+            "paths-ignore": [
+              "docs/**",
+              "README.md"
+            ]
+          }
+        },
+        "uses_in_steps": true
+      },
+      "source_workflow_path": ".github/workflows/tests.yaml",
+      "source_workflow_sha256": "b9e91de90c44bd4d2926296389d96e20c7105c979afbc228022c198c7b6bc51b",
+      "subject_id": "DS3-CONF-01"
+    },
+    {
+      "adapted_jobs": [
+        "changes",
+        "test",
+        "benchmark",
+        "regression-test",
+        "coverage-combine",
+        "test-alls-green",
+        "identity-witness"
+      ],
+      "changes": [
+        {
+          "kind": "workflow name prefixed",
+          "original": "Test"
+        },
+        {
+          "kind": "triggers replaced by push-main + workflow_dispatch",
+          "original_triggers": {
+            "pull_request": "",
+            "push": {
+              "branches": [
+                "master"
+              ]
+            },
+            "schedule": [
+              {
+                "cron": "0 0 * * 1"
+              }
+            ]
+          }
+        },
+        {
+          "kind": "top-level permissions added",
+          "permissions": "contents:read,id-token:write"
+        },
+        {
+          "job": "identity-witness",
+          "kind": "identity-witness job added"
+        },
+        {
+          "job": "changes",
+          "kind": "original steps replaced by one no-op step",
+          "original_step_count": 2
+        },
+        {
+          "job": "test",
+          "kind": "original steps replaced by one no-op step",
+          "original_step_count": 13
+        },
+        {
+          "job": "benchmark",
+          "kind": "original steps replaced by one no-op step",
+          "original_step_count": 7
+        },
+        {
+          "job": "regression-test",
+          "kind": "original steps replaced by one no-op step",
+          "original_step_count": 6
+        },
+        {
+          "job": "coverage-combine",
+          "kind": "original steps replaced by one no-op step",
+          "original_step_count": 11
+        },
+        {
+          "job": "test-alls-green",
+          "kind": "original steps replaced by one no-op step",
+          "original_step_count": 2
+        }
+      ],
+      "copied_workflow_path": ".github/workflows/tiangolo-fastapi.yml",
+      "copied_workflow_sha256": "7c415189487b0011d3ddb4eecfdffdc3b0f395354677f4c217d9645a1bddbb5d",
+      "original_job_count": 6,
+      "original_jobs": [
+        "changes",
+        "test",
+        "benchmark",
+        "regression-test",
+        "coverage-combine",
+        "test-alls-green"
+      ],
+      "original_reusable_uses": [],
+      "original_step_count": 41,
+      "repository": "tiangolo/fastapi",
+      "source_commit": "ba47d6d71b3e806900c8471f2f661781b8c43ec4",
+      "source_features": {
+        "dynamic_expression_count": 27,
+        "job_count": 6,
+        "jobs": [
+          "changes",
+          "test",
+          "benchmark",
+          "regression-test",
+          "coverage-combine",
+          "test-alls-green"
+        ],
+        "matrix": true,
+        "needs": true,
+        "reusable_uses": false,
+        "triggers": {
+          "pull_request": "",
+          "push": {
+            "branches": [
+              "master"
+            ]
+          },
+          "schedule": [
+            {
+              "cron": "0 0 * * 1"
+            }
+          ]
+        },
+        "uses_in_steps": true
+      },
+      "source_workflow_path": ".github/workflows/test.yml",
+      "source_workflow_sha256": "135bba26ec3144f6a5f18bf4791e1514f13b91dd37b3b564d64dd1672be93393",
+      "subject_id": "DS3-CONF-02"
+    },
+    {
+      "adapted_jobs": [
+        "build",
+        "no_chardet",
+        "urllib3",
+        "identity-witness"
+      ],
+      "changes": [
+        {
+          "kind": "workflow name prefixed",
+          "original": "Tests"
+        },
+        {
+          "kind": "triggers replaced by push-main + workflow_dispatch",
+          "original_triggers": [
+            "push",
+            "pull_request"
+          ]
+        },
+        {
+          "kind": "top-level permissions added",
+          "permissions": "contents:read,id-token:write"
+        },
+        {
+          "job": "identity-witness",
+          "kind": "identity-witness job added"
+        },
+        {
+          "job": "build",
+          "kind": "original steps replaced by one no-op step",
+          "original_step_count": 4
+        },
+        {
+          "job": "no_chardet",
+          "kind": "original steps replaced by one no-op step",
+          "original_step_count": 4
+        },
+        {
+          "job": "urllib3",
+          "kind": "original steps replaced by one no-op step",
+          "original_step_count": 4
+        }
+      ],
+      "copied_workflow_path": ".github/workflows/psf-requests.yml",
+      "copied_workflow_sha256": "0a02b3ecb0c3e3bdd664988bc91a7f6bcae2944922c86eb065014717caa68c12",
+      "original_job_count": 3,
+      "original_jobs": [
+        "build",
+        "no_chardet",
+        "urllib3"
+      ],
+      "original_reusable_uses": [],
+      "original_step_count": 12,
+      "repository": "psf/requests",
+      "source_commit": "3c7baaa05ab4aa49cc819ce3a819d260de19c157",
+      "source_features": {
+        "dynamic_expression_count": 4,
+        "job_count": 3,
+        "jobs": [
+          "build",
+          "no_chardet",
+          "urllib3"
+        ],
+        "matrix": true,
+        "needs": false,
+        "reusable_uses": false,
+        "triggers": [
+          "push",
+          "pull_request"
+        ],
+        "uses_in_steps": true
+      },
+      "source_workflow_path": ".github/workflows/run-tests.yml",
+      "source_workflow_sha256": "881865cff186f47787598b2a3d7e6e7eb4d56a3fe4c015414c3cd4d90d9cbb90",
+      "subject_id": "DS3-CONF-03"
+    },
+    {
+      "adapted_jobs": [
+        "tests",
+        "identity-witness"
+      ],
+      "changes": [
+        {
+          "kind": "workflow name prefixed",
+          "original": "Test Suite"
+        },
+        {
+          "kind": "triggers replaced by push-main + workflow_dispatch",
+          "original_triggers": {
+            "pull_request": {
+              "branches": [
+                "master",
+                "version-*"
+              ]
+            },
+            "push": {
+              "branches": [
+                "master"
+              ]
+            }
+          }
+        },
+        {
+          "kind": "top-level permissions added",
+          "permissions": "contents:read,id-token:write"
+        },
+        {
+          "job": "identity-witness",
+          "kind": "identity-witness job added"
+        },
+        {
+          "job": "tests",
+          "kind": "original steps replaced by one no-op step",
+          "original_step_count": 7
+        }
+      ],
+      "copied_workflow_path": ".github/workflows/encode-httpx.yml",
+      "copied_workflow_sha256": "cc77e8fb88a1e589f4d63a7fbb9b0ef413c12eb2f117dcd68c9657da0a9726f1",
+      "original_job_count": 1,
+      "original_jobs": [
+        "tests"
+      ],
+      "original_reusable_uses": [],
+      "original_step_count": 7,
+      "repository": "encode/httpx",
+      "source_commit": "b5addb64f0161ff6bfe94c124ef76f6a1fba5254",
+      "source_features": {
+        "dynamic_expression_count": 2,
+        "job_count": 1,
+        "jobs": [
+          "tests"
+        ],
+        "matrix": true,
+        "needs": false,
+        "reusable_uses": false,
+        "triggers": {
+          "pull_request": {
+            "branches": [
+              "master",
+              "version-*"
+            ]
+          },
+          "push": {
+            "branches": [
+              "master"
+            ]
+          }
+        },
+        "uses_in_steps": true
+      },
+      "source_workflow_path": ".github/workflows/test-suite.yml",
+      "source_workflow_sha256": "986de388f1d3deb853fa24aa3ed5a3c5fcd8e7e915b56147aabd15be866bfd2f",
+      "subject_id": "DS3-CONF-04"
+    },
+    {
+      "adapted_jobs": [
+        "changes",
+        "lockfile",
+        "smoke",
+        "fixtures-pypi",
+        "tests-matrix",
+        "status",
+        "identity-witness"
+      ],
+      "changes": [
+        {
+          "kind": "workflow name prefixed",
+          "original": "Tests"
+        },
+        {
+          "kind": "triggers replaced by push-main + workflow_dispatch",
+          "original_triggers": {
+            "merge_group": "",
+            "pull_request": "",
+            "push": ""
+          }
+        },
+        {
+          "kind": "top-level permissions added",
+          "permissions": "contents:read,id-token:write"
+        },
+        {
+          "job": "identity-witness",
+          "kind": "identity-witness job added"
+        },
+        {
+          "job": "changes",
+          "kind": "original steps replaced by one no-op step",
+          "original_step_count": 2
+        },
+        {
+          "job": "lockfile",
+          "kind": "original steps replaced by one no-op step",
+          "original_step_count": 3
+        },
+        {
+          "job": "smoke",
+          "kind": "original steps replaced by one no-op step",
+          "original_step_count": 6
+        },
+        {
+          "job": "fixtures-pypi",
+          "kind": "original steps replaced by one no-op step",
+          "original_step_count": 5
+        },
+        {
+          "job": "tests-matrix",
+          "kind": "job-level uses replaced by local stub",
+          "original_uses": "$/.github/workflows/.tests-matrix.yaml",
+          "stub": "./.github/workflows/_reusable-python-poetry-poetry.yml"
+        },
+        {
+          "job": "status",
+          "kind": "original steps replaced by one no-op step",
+          "original_step_count": 1
+        }
+      ],
+      "copied_workflow_path": ".github/workflows/python-poetry-poetry.yml",
+      "copied_workflow_sha256": "533b198b88723c5b13fa23d8b2276544ba067f1037763d6e1a0ae4d2f4a19e87",
+      "original_job_count": 6,
+      "original_jobs": [
+        "changes",
+        "lockfile",
+        "smoke",
+        "fixtures-pypi",
+        "tests-matrix",
+        "status"
+      ],
+      "original_reusable_uses": [
+        {
+          "job": "tests-matrix",
+          "uses": "$/.github/workflows/.tests-matrix.yaml"
+        }
+      ],
+      "original_step_count": 17,
+      "repository": "python-poetry/poetry",
+      "source_commit": "fc845fbacf502eda5504efad5bbec6915c1a9f00",
+      "source_features": {
+        "dynamic_expression_count": 15,
+        "job_count": 6,
+        "jobs": [
+          "changes",
+          "lockfile",
+          "smoke",
+          "fixtures-pypi",
+          "tests-matrix",
+          "status"
+        ],
+        "matrix": true,
+        "needs": true,
+        "reusable_uses": true,
+        "triggers": {
+          "merge_group": "",
+          "pull_request": "",
+          "push": ""
+        },
+        "uses_in_steps": true
+      },
+      "source_workflow_path": ".github/workflows/tests.yaml",
+      "source_workflow_sha256": "7ad7f4fbfde58f9a0979a3cbc2eab9f7524219ace8ece10bfd1522852d627802",
+      "subject_id": "DS3-CONF-05"
+    },
+    {
+      "adapted_jobs": [
+        "docs",
+        "determine-changes",
+        "packaging",
+        "vendoring",
+        "tests-unix",
+        "tests-windows",
+        "tests-zipapp",
+        "check",
+        "identity-witness"
+      ],
+      "changes": [
+        {
+          "kind": "workflow name prefixed",
+          "original": "CI"
+        },
+        {
+          "kind": "triggers replaced by push-main + workflow_dispatch",
+          "original_triggers": {
+            "pull_request": "",
+            "push": {
+              "branches": [
+                "main"
+              ],
+              "tags": [
+                "2[0-9].[0-3]",
+                "2[0-9].[0-3].[0-9]+"
+              ]
+            },
+            "schedule": [
+              {
+                "cron": "0 0 * * MON"
+              }
+            ],
+            "workflow_dispatch": ""
+          }
+        },
+        {
+          "kind": "top-level permissions added",
+          "permissions": "contents:read,id-token:write"
+        },
+        {
+          "job": "identity-witness",
+          "kind": "identity-witness job added"
+        },
+        {
+          "job": "docs",
+          "kind": "original steps replaced by one no-op step",
+          "original_step_count": 5
+        },
+        {
+          "job": "determine-changes",
+          "kind": "original steps replaced by one no-op step",
+          "original_step_count": 1
+        },
+        {
+          "job": "packaging",
+          "kind": "original steps replaced by one no-op step",
+          "original_step_count": 8
+        },
+        {
+          "job": "vendoring",
+          "kind": "original steps replaced by one no-op step",
+          "original_step_count": 6
+        },
+        {
+          "job": "tests-unix",
+          "kind": "original steps replaced by one no-op step",
+          "original_step_count": 9
+        },
+        {
+          "job": "tests-windows",
+          "kind": "original steps replaced by one no-op step",
+          "original_step_count": 8
+        },
+        {
+          "job": "tests-zipapp",
+          "kind": "original steps replaced by one no-op step",
+          "original_step_count": 6
+        },
+        {
+          "job": "check",
+          "kind": "original steps replaced by one no-op step",
+          "original_step_count": 1
+        }
+      ],
+      "copied_workflow_path": ".github/workflows/pypa-pip.yml",
+      "copied_workflow_sha256": "e5364229d3a097880e0459d68974b2d0125465a680dcf0ebbdb0f2f4cebb5a1a",
+      "original_job_count": 8,
+      "original_jobs": [
+        "docs",
+        "determine-changes",
+        "packaging",
+        "vendoring",
+        "tests-unix",
+        "tests-windows",
+        "tests-zipapp",
+        "check"
+      ],
+      "original_reusable_uses": [],
+      "original_step_count": 44,
+      "repository": "pypa/pip",
+      "source_commit": "4b71f36fb4dfbc87ce65ac4710eeccf81d379f55",
+      "source_features": {
+        "dynamic_expression_count": 23,
+        "job_count": 8,
+        "jobs": [
+          "docs",
+          "determine-changes",
+          "packaging",
+          "vendoring",
+          "tests-unix",
+          "tests-windows",
+          "tests-zipapp",
+          "check"
+        ],
+        "matrix": true,
+        "needs": true,
+        "reusable_uses": false,
+        "triggers": {
+          "pull_request": "",
+          "push": {
+            "branches": [
+              "main"
+            ],
+            "tags": [
+              "2[0-9].[0-3]",
+              "2[0-9].[0-3].[0-9]+"
+            ]
+          },
+          "schedule": [
+            {
+              "cron": "0 0 * * MON"
+            }
+          ],
+          "workflow_dispatch": ""
+        },
+        "uses_in_steps": true
+      },
+      "source_workflow_path": ".github/workflows/ci.yml",
+      "source_workflow_sha256": "4c21a6fb1f89ba606355f8a602b27314459e62da2da0decbe55547d61b9c3b9c",
+      "subject_id": "DS3-CONF-06"
+    },
+    {
+      "adapted_jobs": [
+        "windows",
+        "ubuntu-free-threading",
+        "javascript-tests",
+        "scripts-tests",
+        "identity-witness"
+      ],
+      "changes": [
+        {
+          "kind": "workflow name prefixed",
+          "original": "Tests"
+        },
+        {
+          "kind": "triggers replaced by push-main + workflow_dispatch",
+          "original_triggers": {
+            "pull_request": {
+              "paths-ignore": [
+                "docs/**"
+              ]
+            },
+            "push": {
+              "branches": [
+                "main"
+              ],
+              "paths-ignore": [
+                "docs/**"
+              ]
+            }
+          }
+        },
+        {
+          "kind": "top-level permissions added",
+          "permissions": "contents:read,id-token:write"
+        },
+        {
+          "job": "identity-witness",
+          "kind": "identity-witness job added"
+        },
+        {
+          "job": "windows",
+          "kind": "original steps replaced by one no-op step",
+          "original_step_count": 6
+        },
+        {
+          "job": "ubuntu-free-threading",
+          "kind": "original steps replaced by one no-op step",
+          "original_step_count": 6
+        },
+        {
+          "job": "javascript-tests",
+          "kind": "original steps replaced by one no-op step",
+          "original_step_count": 4
+        },
+        {
+          "job": "scripts-tests",
+          "kind": "original steps replaced by one no-op step",
+          "original_step_count": 3
+        }
+      ],
+      "copied_workflow_path": ".github/workflows/django-django.yml",
+      "copied_workflow_sha256": "fad3b46460c19d570585204b05caa03fa87e76c7cd8287e7985211a8203442c1",
+      "original_job_count": 4,
+      "original_jobs": [
+        "windows",
+        "ubuntu-free-threading",
+        "javascript-tests",
+        "scripts-tests"
+      ],
+      "original_reusable_uses": [],
+      "original_step_count": 19,
+      "repository": "django/django",
+      "source_commit": "6a8248f13fe7b51c4414eeaf3554a666464b2636",
+      "source_features": {
+        "dynamic_expression_count": 6,
+        "job_count": 4,
+        "jobs": [
+          "windows",
+          "ubuntu-free-threading",
+          "javascript-tests",
+          "scripts-tests"
+        ],
+        "matrix": true,
+        "needs": false,
+        "reusable_uses": false,
+        "triggers": {
+          "pull_request": {
+            "paths-ignore": [
+              "docs/**"
+            ]
+          },
+          "push": {
+            "branches": [
+              "main"
+            ],
+            "paths-ignore": [
+              "docs/**"
+            ]
+          }
+        },
+        "uses_in_steps": true
+      },
+      "source_workflow_path": ".github/workflows/tests.yml",
+      "source_workflow_sha256": "34cbefb3e3cf4e2338d6cb6090eaf4a867a82de8394879e70169d8a8e475a337",
+      "subject_id": "DS3-CONF-07"
+    },
+    {
+      "adapted_jobs": [
+        "test",
+        "coveralls-finish",
+        "uvloop",
+        "identity-witness"
+      ],
+      "changes": [
+        {
+          "kind": "workflow name prefixed",
+          "original": "test"
+        },
+        {
+          "kind": "triggers replaced by push-main + workflow_dispatch",
+          "original_triggers": {
+            "pull_request": {
+              "paths": [
+                ".github/workflows/test.yml",
+                "src/**",
+                "tests/**",
+                "tox.ini",
+                "pyproject.toml",
+                "docs/integrations/pre-commit.md"
+              ]
+            },
+            "push": {
+              "paths": [
+                ".github/workflows/test.yml",
+                "src/**",
+                "tests/**",
+                "tox.ini",
+                "pyproject.toml"
+              ]
+            }
+          }
+        },
+        {
+          "kind": "top-level permissions added",
+          "permissions": "contents:read,id-token:write"
+        },
+        {
+          "job": "identity-witness",
+          "kind": "identity-witness job added"
+        },
+        {
+          "job": "test",
+          "kind": "original steps replaced by one no-op step",
+          "original_step_count": 6
+        },
+        {
+          "job": "coveralls-finish",
+          "kind": "original steps replaced by one no-op step",
+          "original_step_count": 2
+        },
+        {
+          "job": "uvloop",
+          "kind": "original steps replaced by one no-op step",
+          "original_step_count": 4
+        }
+      ],
+      "copied_workflow_path": ".github/workflows/psf-black.yml",
+      "copied_workflow_sha256": "b969781b1c90139055086f1b8bdc539ea52236328af4037ca5695c8a24c15373",
+      "original_job_count": 3,
+      "original_jobs": [
+        "test",
+        "coveralls-finish",
+        "uvloop"
+      ],
+      "original_reusable_uses": [],
+      "original_step_count": 12,
+      "repository": "psf/black",
+      "source_commit": "b4f1fcae48826790b6f93ca9226d20003bce0eaa",
+      "source_features": {
+        "dynamic_expression_count": 10,
+        "job_count": 3,
+        "jobs": [
+          "test",
+          "coveralls-finish",
+          "uvloop"
+        ],
+        "matrix": true,
+        "needs": true,
+        "reusable_uses": false,
+        "triggers": {
+          "pull_request": {
+            "paths": [
+              ".github/workflows/test.yml",
+              "src/**",
+              "tests/**",
+              "tox.ini",
+              "pyproject.toml",
+              "docs/integrations/pre-commit.md"
+            ]
+          },
+          "push": {
+            "paths": [
+              ".github/workflows/test.yml",
+              "src/**",
+              "tests/**",
+              "tox.ini",
+              "pyproject.toml"
+            ]
+          }
+        },
+        "uses_in_steps": true
+      },
+      "source_workflow_path": ".github/workflows/test.yml",
+      "source_workflow_sha256": "75dd758c4dcbacbec49ddf515184275572ccd6dc390c5579bc137d787dece697",
+      "subject_id": "DS3-CONF-08"
+    },
+    {
+      "kind": "reusable stub file",
+      "sha256": "25cf5d1f148d8238db339f2dafa1d8566edd030ef2ee5c5d114cc9920e45dfe3",
+      "stub": ".github/workflows/_reusable-python-poetry-poetry.yml"
+    }
+  ]
+}
